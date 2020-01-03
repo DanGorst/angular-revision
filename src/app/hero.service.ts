@@ -21,8 +21,6 @@ export class HeroService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getHeroes(): Observable<Hero[]> {
-    // TODO: send the message _after_ fetching the heroes
-    this.log('HeroService: fetched heroes');
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(_ => this.log('fetched heroes')),
