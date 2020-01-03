@@ -7,11 +7,38 @@ import { ActivatedRoute } from '@angular/router';
 import { ActivatedRouteStub } from 'src/testing/activated-route-stub';
 import { of } from 'rxjs';
 import { HeroService } from '../hero.service';
-import { By } from '@angular/platform-browser';
+import { click } from 'src/testing';
+
+class Page {
+  // getter properties wait to query the DOM until called.
+  get buttons()     { return this.queryAll<HTMLButtonElement>('button'); }
+  get saveBtn()     { return this.buttons[0]; }
+  get nameDisplay() { return this.query<HTMLElement>('h2'); }
+  get nameInput()   { return this.query<HTMLInputElement>('input'); }
+
+  constructor(private fixture: ComponentFixture<HeroDetailComponent>) {
+  }
+
+  //// query helpers ////
+  private query<T>(selector: string): T {
+    return this.fixture.nativeElement.querySelector(selector);
+  }
+
+  private queryAll<T>(selector: string): T[] {
+    return this.fixture.nativeElement.querySelectorAll(selector);
+  }
+
+  updateValueOfNameInput(newValue: string) {
+    this.nameInput.value = newValue;
+    this.nameInput.dispatchEvent(new Event('input'));
+    this.fixture.detectChanges();
+  }
+}
 
 describe('HeroDetailComponent', () => {
   let component: HeroDetailComponent;
   let fixture: ComponentFixture<HeroDetailComponent>;
+  let page: Page;
 
   let heroService;
 
@@ -43,7 +70,14 @@ describe('HeroDetailComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeroDetailComponent);
     component = fixture.componentInstance;
+    page = new Page(fixture);
+
+    // 1st change detection triggers ngOnInit which gets a hero
     fixture.detectChanges();
+    return fixture.whenStable().then(() => {
+      // 2nd change detection displays the async-fetched hero
+      fixture.detectChanges();
+    });
   });
 
   it('should create', () => {
@@ -51,27 +85,19 @@ describe('HeroDetailComponent', () => {
   });
 
   it('should update title when user enters new hero name', () => {
-    const nameInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
-    const nameDisplay: HTMLElement = fixture.nativeElement.querySelector('h2');
+    page.updateValueOfNameInput('New Hero');
 
-    nameInput.value = 'New Hero';
-    nameInput.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
+    const nameDisplay: HTMLElement = page.nameDisplay;
     expect(nameDisplay.textContent).toBe('NEW HERO Details');
   });
 
   it('should update hero name via service when user selects to save it', () => {
     heroService = TestBed.get(HeroService);
 
-    const nameInput: HTMLInputElement = fixture.nativeElement.querySelector('input');
-    const saveButton = fixture.debugElement.query(By.css('#save-button'));
+    page.updateValueOfNameInput('New Hero');
 
-    nameInput.value = 'New Hero';
-    nameInput.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    saveButton.triggerEventHandler('click', null);
+    const saveButton = page.saveBtn;
+    click(saveButton);
     expect(heroService.updateHero).toHaveBeenCalledWith({ id: 1, name: 'New Hero' });
   });
 });
