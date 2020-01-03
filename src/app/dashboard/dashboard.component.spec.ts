@@ -17,7 +17,8 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     mockHeroService = jasmine.createSpyObj('HeroService', ['getHeroes']);
-    mockHeroService.getHeroes.and.returnValue(of([]));
+    const testHero = { id: 1, name: 'Test Hero 1' };
+    mockHeroService.getHeroes.and.returnValue(of([testHero]));
 
     TestBed.configureTestingModule({
       declarations: [
@@ -40,5 +41,20 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display available heroes', () => {
+    const heroElements = fixture.nativeElement.querySelectorAll('.hero');
+    expect(heroElements.length).toBe(1);
+    expect(heroElements[0].textContent).toEqual('Test Hero 1');
+  });
+
+  it('should display no heroes when none are available', () => {
+    mockHeroService.getHeroes.and.returnValue(of([]));
+    component.getHeroes();
+    fixture.detectChanges();
+
+    const heroElements = fixture.nativeElement.querySelectorAll('.hero');
+    expect(heroElements.length).toBe(0);
   });
 });
