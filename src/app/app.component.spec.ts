@@ -1,6 +1,11 @@
+import { Component } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { AppComponent } from './app.component';
+
+@Component({selector: 'app-messages', template: ''})
+class AppMessagesStubComponent { }
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +14,8 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AppMessagesStubComponent
       ],
     }).compileComponents();
   }));
@@ -20,16 +26,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'my-first-project'`, () => {
+  it(`should have as title 'Tour of Heroes'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('my-first-project');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('my-first-project app is running!');
+    expect(app.title).toEqual('Tour of Heroes');
   });
 });
