@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { HeroSearchComponent } from './hero-search.component';
 import { RouterLinkDirectiveStub } from 'src/testing/router-link-directive-stub';
@@ -10,12 +10,11 @@ describe('HeroSearchComponent', () => {
   let component: HeroSearchComponent;
   let fixture: ComponentFixture<HeroSearchComponent>;
 
-  let mockHeroService;
-  let searchHeroesSpy;
+  let heroService: HeroService;
 
   beforeEach(async(() => {
-    mockHeroService = jasmine.createSpyObj('HeroService', ['searchHeroes']);
-    searchHeroesSpy = mockHeroService.searchHeroes.and.returnValue(of([]));
+    const mockHeroService = jasmine.createSpyObj('HeroService', ['searchHeroes']);
+    mockHeroService.searchHeroes.and.returnValue(of([]));
 
     TestBed.configureTestingModule({
       declarations: [
@@ -31,6 +30,7 @@ describe('HeroSearchComponent', () => {
   }));
 
   beforeEach(() => {
+    heroService = TestBed.get(HeroService);
     fixture = TestBed.createComponent(HeroSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -39,4 +39,12 @@ describe('HeroSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should debounce keystrokes before making call to service', fakeAsync(() => {
+    component.search('te');
+    tick(100);
+    expect(heroService.searchHeroes).not.toHaveBeenCalled();
+    tick(201);
+    expect(heroService.searchHeroes).toHaveBeenCalledWith('te');
+  }));
 });
