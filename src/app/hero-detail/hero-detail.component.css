@@ -5,6 +5,7 @@ mat-spinner {
 .details-container {
   display: flex;
   flex-direction: column;
+  margin: 10px 0px;
 }
 
 .form-field {
