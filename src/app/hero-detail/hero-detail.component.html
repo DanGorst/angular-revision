@@ -1,11 +1,16 @@
 <div *ngIf="hero">
-  <h2>{{hero.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{hero.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
-    </label>
+  <div class="details-container">
+    <h2>{{hero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <mat-form-field class="form-field">
+      <input id="name-box" matInput [(ngModel)]="hero.name" placeholder="name" />
+    </mat-form-field>
+    <div>
+      <button mat-button id="save-button" (click)="save()">save</button>
+      <button mat-button id="back-button" (click)="goBack()">go back</button>
+    </div>
   </div>
-  <button id="save-button" (click)="save()">save</button>
-  <button id="back-button" (click)="goBack()">go back</button>
+</div>
+<div *ngIf="loading">
+    <mat-spinner diameter=50></mat-spinner>
 </div>

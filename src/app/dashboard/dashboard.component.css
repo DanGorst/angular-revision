@@ -2,3 +2,7 @@ mat-grid-tile {
   background: lightblue;
   border-radius: 10px;
 }
+
+mat-spinner {
+  margin: 50px 50px;
+}
