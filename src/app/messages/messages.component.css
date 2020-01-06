@@ -1,4 +1,8 @@
 /* MessagesComponent's private CSS styles */
+#messages-container {
+  overflow: auto;
+  height: 250px;
+}
 h2 {
   color: red;
   font-family: Arial, Helvetica, sans-serif;

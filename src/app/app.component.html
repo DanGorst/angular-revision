@@ -1,7 +1,15 @@
-<h1>{{title}}</h1>
-<nav>
-  <button type="button" class="btn btn-primary" routerLink="/dashboard">Dashboard</button>
-  <button type="button" class="btn btn-primary" routerLink="/heroes">Heroes</button>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<div id="main-app-container">
+  <div id="app-header">
+    <h1>{{title}}</h1>
+    <nav>
+      <button type="button" class="btn btn-primary" routerLink="/dashboard">Dashboard</button>
+      <button type="button" class="btn btn-primary" routerLink="/heroes">Heroes</button>
+    </nav>
+  </div>
+  <div id="app-body">
+    <router-outlet></router-outlet>
+  </div>
+  <div id="app-footer">
+    <app-messages></app-messages>
+  </div>
+</div>
