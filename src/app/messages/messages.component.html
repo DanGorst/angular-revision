@@ -1,10 +1,22 @@
 <div *ngIf="messageService.messages.length">
 
-  <h2>Messages</h2>
-  <button class="clear"
-          (click)="messageService.clear()">clear</button>
+  <h3>Messages</h3>
+  <button class="btn btn-secondary"
+          (click)="messageService.clear()">Clear</button>
   <div id="messages-container">
-    <div *ngFor='let message of messageService.messages'> {{message}} </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Message</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let message of messageService.messages; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ message }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-
 </div>
