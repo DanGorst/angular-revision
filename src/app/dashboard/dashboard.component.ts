@@ -9,6 +9,7 @@ import { HeroService } from '../hero.service';
 })
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+  loading: boolean;
 
   constructor(private heroService: HeroService) { }
 
@@ -17,7 +18,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
+    this.loading = true;
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(0, 4));
+      .subscribe(heroes => {
+        this.loading = false;
+        this.heroes = heroes.slice(0, 4);
+      });
   }
 }

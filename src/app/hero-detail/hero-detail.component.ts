@@ -13,6 +13,7 @@ import { Hero } from '../hero';
 export class HeroDetailComponent implements OnInit {
 
   @Input() hero: Hero;
+  loading: boolean;
 
   constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
@@ -21,9 +22,13 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
+    this.loading = true;
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {
+        this.loading = false;
+        this.hero = hero;
+      });
   }
 
   save(): void {

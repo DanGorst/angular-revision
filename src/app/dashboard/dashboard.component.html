@@ -1,10 +1,11 @@
 <div id="main-container">
 <h3>Top Heroes</h3>
 <div class="grid-container">
-  <button type="button" class="btn btn-primary grid-button" *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
+  <button type="button" class="btn btn-primary grid-button hero" *ngFor="let hero of heroes" routerLink="/detail/{{hero.id}}">
     <h4>{{hero.name}}</h4>
   </button>
 </div>
+<app-simple-spinner *ngIf="loading"></app-simple-spinner>
 
 <app-hero-search></app-hero-search>
 </div>

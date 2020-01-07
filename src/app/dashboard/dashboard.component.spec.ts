@@ -9,6 +9,9 @@ import { HeroService } from '../hero.service';
 @Component({selector: 'app-hero-search', template: ''})
 class AppHeroSearchStubComponent { }
 
+@Component({selector: 'app-simple-spinner', template: ''})
+class AppSimpleSpinnerStubComponent { }
+
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
@@ -24,6 +27,7 @@ describe('DashboardComponent', () => {
       declarations: [
         DashboardComponent,
         AppHeroSearchStubComponent,
+        AppSimpleSpinnerStubComponent,
         RouterLinkDirectiveStub
       ],
       providers: [

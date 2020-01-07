@@ -8,6 +8,7 @@ import { ActivatedRouteStub } from 'src/testing/activated-route-stub';
 import { of } from 'rxjs';
 import { HeroService } from '../hero.service';
 import { click } from 'src/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 class Page {
   // getter properties wait to query the DOM until called.
@@ -62,7 +63,8 @@ describe('HeroDetailComponent', () => {
         { provide: ActivatedRoute, useValue: activatedRouteStub },
         { provide: HeroService, useValue: mockHeroService },
         { provide: Location, useValue: mockLocation }
-      ]
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
