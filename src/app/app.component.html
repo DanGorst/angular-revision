@@ -2,7 +2,7 @@
 <nav>
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/heroes">Heroes</a>
+  <button kendoButton (click)="onButtonClick()" [primary]="true">My Kendo UI Button</button>
 </nav>
-<button kendoButton (click)="onButtonClick()" [primary]="true">My Kendo UI Button</button>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

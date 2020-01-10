@@ -1,0 +1,13 @@
+<kendo-buttongroup [selection]="'single'">
+  <button kendoButton [toggleable]="true" (click)="changeBindingType('array')">Array</button>
+  <button kendoButton [toggleable]="true" (click)="changeBindingType('gridDataResult')">GridDataResult</button>
+  <button kendoButton [toggleable]="true" (click)="changeBindingType('async')">Async</button>
+</kendo-buttongroup>
+
+<kendo-grid
+  [data]="gridData"
+  [height]="410"
+  [loading]="bindingType === 'async' && view.loading"
+  >
+    <kendo-grid-column *ngFor="let col of columns" [field]="col.field"></kendo-grid-column>
+</kendo-grid>

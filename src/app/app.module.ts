@@ -15,7 +15,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { GridModule } from '@progress/kendo-angular-grid';
+import { KendoGridComponent } from './kendo-grid/kendo-grid.component';
+import { CategoriesService } from './kendo-grid/northwind.service';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    KendoGridComponent
   ],
   imports: [
     BrowserModule,
@@ -41,10 +44,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ),
 
     ButtonsModule,
-
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GridModule
   ],
-  providers: [],
+  providers: [CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
