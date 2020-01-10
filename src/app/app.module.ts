@@ -15,6 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './dynamic-form/dynamic-form-question.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
     DashboardComponent,
     HeroSearchComponent,
     ReactiveFormComponent,
-    ProfileEditorComponent
+    ProfileEditorComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
   ],
   imports: [
     BrowserModule,
