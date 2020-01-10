@@ -26,18 +26,18 @@ describe('ReactiveFormComponent', () => {
   });
 
   it('should update the value in the model', () => {
-    const input = fixture.nativeElement.querySelector('input');
+    const input = fixture.nativeElement.querySelector('#color-input');
 
     input.value = 'Red';
     input.dispatchEvent(new Event('input'));
 
-    expect(fixture.componentInstance.favoriteColorControl.value).toEqual('Red');
+    expect(fixture.componentInstance.favoriteColor.value).toEqual('Red');
   });
 
   it('should update the value in the view', () => {
-    component.favoriteColorControl.setValue('Blue');
+    component.favoriteColor.setValue('Blue');
 
-    const input = fixture.nativeElement.querySelector('input');
+    const input = fixture.nativeElement.querySelector('#color-input');
 
     expect(input.value).toBe('Blue');
   });

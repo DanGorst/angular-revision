@@ -8,11 +8,15 @@ import { FormControl } from '@angular/forms';
 })
 export class ReactiveFormComponent implements OnInit {
 
-  favoriteColorControl = new FormControl('');
+  name = new FormControl('');
+  favoriteColor = new FormControl('');
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  updateName() {
+    this.name.setValue('Nancy');
+  }
 }
