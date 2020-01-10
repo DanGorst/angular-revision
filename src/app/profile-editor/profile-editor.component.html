@@ -28,6 +28,10 @@
     </div>
   </div>
 
+  <div *ngIf="profileForm.errors?.sameFirstLastName && (profileForm.touched || profileForm.dirty)" class="cross-validation-error-message alert alert-danger">
+    First name cannot match last name.
+  </div>
+
   <div formGroupName="address">
     <h3>Address</h3>
 

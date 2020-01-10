@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { forbiddenNameValidator } from './forbidden-name.directive';
+import { sameFirstLastNameValidator } from './same-first-last-name.directive';
 
 @Component({
   selector: 'app-profile-editor',
@@ -21,7 +22,7 @@ export class ProfileEditorComponent implements OnInit {
     aliases: this.fb.array([
       this.fb.control('')
     ])
-  });
+  }, { validators: sameFirstLastNameValidator });
 
   constructor(private fb: FormBuilder) { }
 
