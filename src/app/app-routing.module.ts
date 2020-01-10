@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HeroesComponent } from './heroes/heroes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: 'form', component: ReactiveFormComponent },
+  { path: '', redirectTo: '/form', pathMatch: 'full' }
 ];
 
 @NgModule({
