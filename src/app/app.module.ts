@@ -14,6 +14,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    ProfileEditorComponent
   ],
   imports: [
     BrowserModule,
