@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- angular-material
 
 pool:
   vmImage: 'ubuntu-latest'
